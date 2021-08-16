@@ -19,14 +19,12 @@ public class OrderStatus {
 	
 	@Enumerated(EnumType.STRING)
 	private OrderStatusType name;
-
-	@OneToOne(mappedBy = "orderStatus")
-	private CustomerOrder customerOrder;
 	
 	
 	public OrderStatus() {}
-	
-	public OrderStatus(OrderStatusType name) {
+
+	public OrderStatus(int id, OrderStatusType name) {
+		this.id = id;
 		this.name = name;
 	}
 

@@ -3,9 +3,13 @@ package com.orderingapp.OrderinngApp.resources;
 import java.util.List;
 import java.util.Optional;
 
+import javax.ws.rs.core.Response.Status;
+
+import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,10 +53,27 @@ public class CustomerOrderResource {
 		
 	}
 	
+	@GetMapping("/{id}")
+    public ResponseEntity<CustomerOrder> getCustomerOrderById(@PathVariable(value = "id") Integer id){
+        CustomerOrder customerOrder = customerOrderService.findById(id);
+        return new ResponseEntity<CustomerOrder>(customerOrder, HttpStatus.OK);
+    }
+	
 	@PutMapping("/update")
 	public ResponseEntity<CustomerOrder> updateOrder(@RequestBody CustomerOrder customerOrder){
 		CustomerOrder updateStatus = customerOrderService.updateOrder(customerOrder);
 		return new ResponseEntity<CustomerOrder>(updateStatus,HttpStatus.OK);
 	}
-		 
+	
+	@PutMapping("/update/{status}")
+    public ResponseEntity<CustomerOrder> updateOrderStatus(@RequestBody CustomerOrder customerOrder, @PathVariable Integer status) {
+        CustomerOrder updateStatus = customerOrderService.updateStatus(customerOrder, status);
+        return new ResponseEntity<CustomerOrder>(updateStatus, HttpStatus.OK);
+    }
+	
+	@DeleteMapping("/delete/{id}")
+	public void deleteOrder(@PathVariable int id){
+		 customerOrderService.deleteOrder(id);
+	}
+	 
 }

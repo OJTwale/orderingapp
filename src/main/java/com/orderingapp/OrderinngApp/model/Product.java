@@ -1,10 +1,18 @@
 package com.orderingapp.OrderinngApp.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.ManyToAny;
 
 @Entity
 public class Product {
@@ -22,7 +30,9 @@ public class Product {
 	@Column
 	private Double productCost;
 	
-	
+	@ManyToMany(mappedBy = "orderedProducts")
+	private Set<CustomerOrder> customerOrder;
+
 	public Product() {
 		
 	}
@@ -34,7 +44,6 @@ public class Product {
 		this.productDesc = productDesc;
 		this.productCost = productCost;
 	}
-	
 	
 	
 	public int getId() {
@@ -61,6 +70,4 @@ public class Product {
 	public void setProductCost(Double productCost) {
 		this.productCost = productCost;
 	}
-	
-	
 }

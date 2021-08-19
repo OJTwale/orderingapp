@@ -30,7 +30,7 @@ public class UserService {
         public boolean verifyUser(String uname, String pass)
         {
             User u=null;
-            u=userRepo.findByUserName(uname);
+            u=userRepo.findByUserName(uname).orElse(null);
             if(u!=null && u.getPassword().equals(pass))
             {
                 return true;
@@ -43,6 +43,6 @@ public class UserService {
         }
         
         public User findUser(String userName) {
-			return userRepo.findByUserName(userName);
+			return userRepo.findByUserName(userName).orElse(null);
         }
 }

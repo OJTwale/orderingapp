@@ -52,8 +52,8 @@ public class UserResource {
     }
     
     @GetMapping("/login/{userName}")
-    public ResponseEntity<User> findUser(@PathVariable String userName){
+    public ResponseEntity<?> findUser(@PathVariable String userName){
     	User user = userService.findUser(userName);
-    	return new ResponseEntity<User>(user, HttpStatus.OK);
+    	return new ResponseEntity<>(user, HttpStatus.OK);
     }
 }

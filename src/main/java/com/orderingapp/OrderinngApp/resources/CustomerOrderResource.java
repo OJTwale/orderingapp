@@ -76,4 +76,9 @@ public class CustomerOrderResource {
 		 customerOrderService.deleteOrder(id);
 	}
 	 
+	@GetMapping("/byuser/{orderedByUser}")
+	public ResponseEntity<List<CustomerOrder>> getByOrderedUser(@PathVariable String orderedByUser){
+		List<CustomerOrder> customerOrder = customerOrderService.findByOrderedUser(orderedByUser);
+		return new ResponseEntity<>(customerOrder, HttpStatus.OK);
+	}
 }

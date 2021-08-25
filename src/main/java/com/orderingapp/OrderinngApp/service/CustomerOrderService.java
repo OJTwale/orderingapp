@@ -52,4 +52,8 @@ public class CustomerOrderService {
 		customerOrderRepo.deleteById(id);
 	}
 	
+	public List<CustomerOrder> findByOrderedUser(String orderedBy){
+		return customerOrderRepo.findByorderedByUser(orderedBy).orElse(null);
+	}
+	
 }

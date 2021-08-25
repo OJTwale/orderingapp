@@ -22,11 +22,11 @@ public class UserService {
         }
 
  
-
+ 
         public User createUser(User user) {
             return userRepo.save(user);
         }
-        
+       
         public boolean verifyUser(String uname, String pass)
         {
             User u=null;

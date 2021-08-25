@@ -41,7 +41,7 @@ public class UserResource {
     public ResponseEntity<User> addUser(@RequestBody User user){
         User users = userService.createUser(user);
         return new ResponseEntity<>(users, HttpStatus.CREATED);
-        
+       
     }
     
     @PostMapping("/login")

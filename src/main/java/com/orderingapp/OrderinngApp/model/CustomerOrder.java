@@ -38,6 +38,9 @@ public class CustomerOrder {
     @Column
     private Integer orderStatus;
     
+    @Column
+    private String orderedByUser;
+    
     @ManyToMany
     @JoinTable(name = "customer_products", joinColumns = @JoinColumn(name="customerOrder_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
     private Set<Product> orderedProducts;
@@ -45,7 +48,7 @@ public class CustomerOrder {
     public CustomerOrder() {}
     
     public CustomerOrder(int id, String orderNumber, Date orderDate, Double orderCost,String customerName,
-            String customerAddress, Integer orderStatus, Set<Product> oProducts) {
+            String customerAddress, Integer orderStatus, String orderedByUSer, Set<Product> oProducts) {
         super();
         this.id = id;
         this.orderNumber = orderNumber;
@@ -54,6 +57,7 @@ public class CustomerOrder {
         this.customerName = customerName;
         this.customerAddress = customerAddress;
         this.orderStatus = orderStatus;
+        this.orderedByUser = orderedByUSer;
         this.orderedProducts = oProducts;
     }
     public int getId() {
@@ -106,8 +110,17 @@ public class CustomerOrder {
 
 	public void setOrderedProducts(Set<Product> orderedProducts) {
 		this.orderedProducts = orderedProducts;
+	}
+
+	public String getOrderedByUser() {
+		return orderedByUser;
+	}
+
+	public void setOrderedByUser(String orderedByUser) {
+		this.orderedByUser = orderedByUser;
 	}   
     
+	
     
     
 }

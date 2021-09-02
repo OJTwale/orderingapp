@@ -41,13 +41,16 @@ public class User {
     @Column
     private String answer2;
     
+    @Column
+    private boolean isBlocked;
+    
     
     public User() {}
     
 
  
 
-    public User(int id, String username, String password, boolean isAdmin, String question1, String answer1, String question2, String answer2) {
+    public User(int id, String username, String password, boolean isAdmin, String question1, String answer1, String question2, String answer2, boolean isBlocked) {
         super();
         this.id = id;
         this.userName = username;
@@ -56,6 +59,7 @@ public class User {
         this.question1= question1;
         this.answer1=answer1;
         this.question2=question2;
+        this.isBlocked = isBlocked;
     }
 
  
@@ -163,8 +167,19 @@ public class User {
 	public void setAnswer2(String answer2) {
 		this.answer2 = answer2;
 	}
-    
-    
- 
+
+
+
+
+	public boolean isBlocked() {
+		return isBlocked;
+	}
+
+
+
+
+	public void setBlocked(boolean isBlocked) {
+		this.isBlocked = isBlocked;
+	}
 
 }
